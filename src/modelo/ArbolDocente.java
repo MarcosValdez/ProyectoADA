@@ -10,67 +10,103 @@ package modelo;
  * @author marco
  */
 public class ArbolDocente {
-    
-    Docente raiz,posicionActual,posicionPadre;
+
+    Docente raiz, posicionActual, posicionPadre;
 
     public ArbolDocente() {
         this.raiz = null;
-        this.posicionActual = null;
-        this.posicionPadre = null;
     }
-    
-    public String busqueda(int dni){
-        Docente d=busquedaDocente(dni);
-        if(d==null){
-            return "YA EXISTE";
-        }else{
+
+    public String busqueda(int dni) {
+
+        if (busquedaDocente(dni) == null) {
             return "NO EXISTE";
+        } else {
+            return "YA EXISTE\n";
         }
     }
-    
-    public Docente busquedaDocente(int dni){
-        
-        if(raiz==null){
-            posicionActual=null;
-            posicionPadre=null;
-            return null;
-        }else{
-            Docente D=raiz;
-            if(D.dniDocente<dni){
-                D=D.hijoDerecho;
-            }else{
-                boolean encontro=false;
-                D=D.hijoIzquierdo;
-                Docente aux=raiz;
-                while((D==null) && (encontro=false)){
-                    if(D.dniDocente==dni){
-                        posicionActual=D;
-                        posicionPadre=aux;
-                        encontro=true;
-                    }else{
-                        aux=D;
-                        if(D.dniDocente<dni){
-                            D=D.hijoDerecho;
-                        }else{
-                            D=D.hijoIzquierdo;
-                        }
-                    }
-                }
-                if(encontro=false){
-                    posicionActual=null;
-                    posicionPadre=aux;
+
+    public Docente busquedaDocente(int dni) {
+        if (raiz == null) {
+            posicionActual = null;
+            posicionPadre = null;
+        } else {
+            Docente D = raiz;
+            if (D.dniDocente == dni) {
+                posicionActual = D;
+                posicionPadre = null;
+            } else {
+                if (D.dniDocente < dni) {
+                    D = D.hijoDerecho;
+                    return recorrer(D, dni);
+                } else {
+                    D = D.hijoIzquierdo;
+                    return recorrer(D, dni);
                 }
             }
-            return D;
+        }
+        return posicionActual;
+    }
+
+    public Docente recorrer(Docente D, int dni) {
+        Docente aux = raiz;
+        boolean encontro = false;
+        while ((D != null) && (encontro == false)) {
+            if (D.dniDocente == dni) {
+                posicionActual = D;
+                posicionPadre = aux;
+                encontro = true;
+            } else {
+                aux = D;
+                if (D.dniDocente < dni) {
+                    D = D.hijoDerecho;
+                } else {
+                    D = D.hijoIzquierdo;
+                }
+            }
+        }
+        if (D == null) {
+            posicionActual = null;
+            posicionPadre = aux;
+
+        }
+        return posicionActual;
+    }
+
+    public String insertar(int dni, String nombre, String apellido) {
+
+        if (busquedaDocente(dni) == null) {
+            insertarDocente(dni, nombre, apellido);
+            return "se adiciono docente " + dni;
+        } else {
+            return "ya existe" + dni;
         }
     }
-    
-    public void insertar(){
-        
+
+    public void insertarDocente(int dni, String nombre, String apellido) {
+        Docente D = new Docente(dni, nombre, apellido);
+        if (posicionPadre == null) {
+            raiz = D;
+
+        } else {
+            if (posicionPadre.dniDocente < D.dniDocente) {
+                posicionPadre.hijoDerecho = D;
+
+            } else {
+                posicionPadre.hijoIzquierdo = D;
+            }
+        }
+
     }
-    
-    public void insertarDocente(){
-        
+
+    public String mostrar() {
+        return inOrden(raiz);
     }
-    
+
+    public String inOrden(Docente r) {
+        if (r != null) {
+            return inOrden(r.hijoIzquierdo) +"\n"+ r.toString() +"\n"+ inOrden(r.hijoDerecho);
+        }
+        return "";
+    }
 }

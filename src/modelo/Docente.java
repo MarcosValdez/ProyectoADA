@@ -10,11 +10,11 @@ package modelo;
  * @author marco
  */
 public class Docente {
-    
+
     public int dniDocente;
     public String nombreDocente;
     public String apellidoDocente;
-    
+
     Docente hijoIzquierdo;
     Docente hijoDerecho;
 
@@ -25,13 +25,16 @@ public class Docente {
         this.hijoIzquierdo = null;
         this.hijoDerecho = null;
     }
-    
+
+    public Docente() {
+        this.hijoIzquierdo = null;
+        this.hijoDerecho = null;
+    }
+
     @Override
     public String toString() {
-        return  "Dni:" + dniDocente + " Nombre:" + nombreDocente + " Apellido:" + apellidoDocente ;
+        return dniDocente + "\t" + nombreDocente + "\t" + apellidoDocente;
     }
     
-    
-    
-    
+
 }

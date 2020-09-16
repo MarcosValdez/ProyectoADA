@@ -18,9 +18,8 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
-
-
+import modelo.ArbolDocente;
+import modelo.Docente;
 
 /**
  * FXML Controller class
@@ -52,38 +51,51 @@ public class RegistroDocenteController implements Initializable {
 
     @FXML
     private Button btnModificarDocente;
-    
+
     @FXML
     private Button btnVerificarDocente;
 
+    ArbolDocente docente = new ArbolDocente();
+
     @FXML
     public void adicionarDocente(ActionEvent event) {
-            
+        int dni = Integer.parseInt(txtDniDocente.getText());
+        String nombre = txtNombreDocente.getText();
+        String apellido = txtApellidoDocente.getText();
+        
+        //Docente d = new Docente(dni,nombre,apellido);
+        
+       txtArea.setText(docente.insertar(dni,nombre,apellido));
+
     }
 
     @FXML
     public void verificarDNI(ActionEvent event) {
-            
+        int dni = Integer.parseInt(txtDniDocente.getText());
+
+//        Docente d = docente.busquedaDocente(dni);
+
+        txtArea.setText(docente.busqueda(dni));
     }
-    
 
     @FXML
     public void guardarDocente(ActionEvent event) throws IOException {
-        
+
     }
 
     @FXML
     void eliminarDocente(ActionEvent event) {
-        
+        Docente d=new Docente();
+        txtArea.setText(docente.mostrar());
     }
 
     @FXML
     void modifcarDocente(ActionEvent event) throws InterruptedException {
-        
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
 }
