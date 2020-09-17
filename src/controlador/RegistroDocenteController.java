@@ -74,11 +74,12 @@ public class RegistroDocenteController implements Initializable {
 
     @FXML
     public void adicionarDocente(ActionEvent event) {
-        int dni = Integer.parseInt(txtDniDocente.getText());
+        int dni1=Integer.parseInt(txtVerificarDni.getText());
+        int dni2 = Integer.parseInt(txtDniDocente.getText());
         String nombre = txtNombreDocente.getText();
         String apellido = txtApellidoDocente.getText();
 
-        txtMensaje.setText(docente.insertar(dni, nombre, apellido));
+        txtMensaje.setText(docente.insertar(dni1,dni2, nombre, apellido));
         txtDniDocente.setText("");
         txtNombreDocente.setText("");
         txtApellidoDocente.setText("");
@@ -87,7 +88,7 @@ public class RegistroDocenteController implements Initializable {
 
     @FXML
     public void verificarDNI(ActionEvent event) {
-        int dni = Integer.parseInt(txtDniDocente.getText());
+        int dni = Integer.parseInt(txtVerificarDni.getText());
 
         txtMensaje.setText(docente.busqueda(dni));
 
@@ -130,9 +131,8 @@ public class RegistroDocenteController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        txtArea.setEditable(false);
         try {
-            //archivo.crear();
             docente.pasarFilaArbolDocente();
         } catch (IOException ex) {
             Logger.getLogger(RegistroDocenteController.class.getName()).log(Level.SEVERE, null, ex);

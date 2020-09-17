@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import modelo.ArbolDocente;
 
 
 /**
@@ -18,9 +19,11 @@ import javafx.stage.Stage;
  */
 public class CentroIdiomas extends Application {
     
+    //ArbolDocente a=new ArbolDocente();
+    
     @Override
     public void start(Stage stage) throws Exception {
-        
+       // a.pasarFilaArbolDocente();
         Parent root = FXMLLoader.load(getClass().getResource("/vista/Registro.fxml"));
         //Parent roo = FXMLLoader.load(getClass().getResource("FXMLDocente.fxml"));
         Scene scene = new Scene(root);

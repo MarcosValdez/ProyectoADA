@@ -118,6 +118,11 @@ public class RegistroAlumnoController implements Initializable {
         int edad = Integer.parseInt(txtEdadAlumno.getText());
 
         txtMensaje.setText(alumno.modificarAlumno(dni1, dni2, nombre, apellido, edad));
+        txtVerificarDni.setText("");
+        txtDniAlumno.setText("");
+        txtNombreAlumno.setText("");
+        txtApellidoAlumno.setText("");
+        txtEdadAlumno.setText("");
         txtAreaAlumno.setText(alumno.mostrarAlumno());
     }
 

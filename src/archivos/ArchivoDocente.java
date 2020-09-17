@@ -30,8 +30,6 @@ public class ArchivoDocente {
     FileReader fr;
     BufferedReader entradaArchivo;
     
-    String linea;
-    
     public ArchivoDocente(){
         file=new File("Docentes.txt");
     }
@@ -50,7 +48,8 @@ public class ArchivoDocente {
     }
     
     //PRIMER(F) *LECTURA*
-    public void abrirEntrada() throws FileNotFoundException{
+    public void abrirEntrada() throws FileNotFoundException, IOException{
+       
             fr=new FileReader(file);
             entradaArchivo=new BufferedReader(fr);
     }
@@ -62,7 +61,7 @@ public class ArchivoDocente {
     }
     
     public String leer() throws IOException{
-        linea=entradaArchivo.readLine();
+        String linea=entradaArchivo.readLine();
         return linea;
     }
     

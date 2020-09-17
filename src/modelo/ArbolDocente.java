@@ -81,13 +81,13 @@ public class ArbolDocente {
         return posicionActual;
     }
 
-    public String insertar(int dni, String nombre, String apellido) {
+    public String insertar(int dni1,int dni2, String nombre, String apellido) {
 
-        if (busquedaDocente(dni) == null) {
-            insertarDocente(dni, nombre, apellido);
-            return "se adiciono docente " + dni;
+        if (busquedaDocente(dni1) == null) {
+            insertarDocente(dni2, nombre, apellido);
+            return "se adiciono docente " + dni2;
         } else {
-            return "ya existe" + dni;
+            return "ya existe" + dni2;
         }
     }
 
@@ -95,7 +95,7 @@ public class ArbolDocente {
         Docente D = new Docente(dni, nombre, apellido);
         if (posicionPadre == null) {
             raiz = D;
-            //posicionActual=D;
+            
         } else {
             if (posicionPadre.dniDocente < D.dniDocente) {
                 posicionPadre.hijoDerecho = D;
@@ -215,20 +215,22 @@ public class ArbolDocente {
     public void pasarFilaArbolDocente() throws FileNotFoundException, IOException {
         archivo.crear();
         archivo.abrirEntrada();
-        //raiz=null;
+        //posicionPadre=null;
 //        posicionActual=null;
 //        posicionPadre=null;
         String cadena, dni, nombre, apellido;
-
-        while ((cadena=archivo.leer()) != null) {
-            
+        
+        while ( (cadena=archivo.leer())!= null) {
             StringTokenizer token = new StringTokenizer(cadena);
-           while (token.hasMoreTokens()) {
+           //while (token.hasMoreTokens()) {
                 dni = token.nextToken();
                 nombre = token.nextToken();
                 apellido = token.nextToken();
+                busquedaDocente(Integer.parseInt(dni));
                 insertarDocente(Integer.parseInt(dni), nombre, apellido);
-            }
+            //}
+            System.out.println(cadena);
+            
         }
         archivo.cerrarEntrada();
     }
