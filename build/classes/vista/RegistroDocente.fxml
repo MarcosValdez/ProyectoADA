@@ -8,37 +8,46 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="641.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistroDocenteController">
+<AnchorPane id="AnchorPane" prefHeight="659.0" prefWidth="489.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistroDocenteController">
    <children>
-      <Button fx:id="btnAdicionarDocente" layoutX="49.0" layoutY="294.0" mnemonicParsing="false" onAction="#adicionarDocente" prefHeight="39.0" prefWidth="82.0" text="Adicionar" />
-      <Button fx:id="btnModificarDocente" layoutX="164.0" layoutY="294.0" mnemonicParsing="false" onAction="#modifcarDocente" prefHeight="39.0" prefWidth="75.0" text="Modificar" />
-      <Button fx:id="btnEliminarDocente" layoutX="273.0" layoutY="294.0" mnemonicParsing="false" onAction="#eliminarDocente" prefHeight="39.0" prefWidth="75.0" text="Eliminar" />
-      <Button fx:id="btnGuardarDocente" layoutX="376.0" layoutY="294.0" mnemonicParsing="false" onAction="#guardarDocente" prefHeight="39.0" prefWidth="75.0" text="Guardar" />
-      <TextArea fx:id="txtArea" layoutX="15.0" layoutY="349.0" prefHeight="253.0" prefWidth="525.0" />
-      <TextField fx:id="txtNombreDocente" layoutX="219.0" layoutY="143.0" />
-      <TextField fx:id="txtApellidoDocente" layoutX="219.0" layoutY="192.0" />
-      <TextField fx:id="txtDniDocente" layoutX="219.0" layoutY="101.0" />
-      <Label layoutX="188.0" layoutY="46.0" text="Registro de Docentes">
+      <Button fx:id="btnAdicionarDocente" layoutX="47.0" layoutY="345.0" mnemonicParsing="false" onAction="#adicionarDocente" prefHeight="39.0" prefWidth="91.0" text="Adicionar" />
+      <Button fx:id="btnModificarDocente" layoutX="153.0" layoutY="345.0" mnemonicParsing="false" onAction="#modifcarDocente" prefHeight="39.0" prefWidth="85.0" text="Modificar" />
+      <Button fx:id="btnEliminarDocente" layoutX="260.0" layoutY="345.0" mnemonicParsing="false" onAction="#eliminarDocente" prefHeight="39.0" prefWidth="85.0" text="Eliminar" />
+      <Button fx:id="btnGuardarDocente" layoutX="366.0" layoutY="345.0" mnemonicParsing="false" onAction="#guardarDocente" prefHeight="39.0" prefWidth="85.0" text="Guardar" />
+      <TextArea fx:id="txtArea" layoutX="38.0" layoutY="398.0" prefHeight="253.0" prefWidth="419.0" />
+      <TextField fx:id="txtNombreDocente" layoutX="190.0" layoutY="221.0" prefHeight="25.0" prefWidth="112.0" />
+      <TextField fx:id="txtApellidoDocente" layoutX="190.0" layoutY="270.0" prefHeight="25.0" prefWidth="112.0" />
+      <TextField fx:id="txtDniDocente" layoutX="190.0" layoutY="179.0" prefHeight="25.0" prefWidth="112.0" />
+      <Label layoutX="154.0" layoutY="70.0" text="Registro de Docentes">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="146.0" text="Ingresar nombre:">
+      <Label layoutX="55.0" layoutY="224.0" text="Ingresar nombre:">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="67.0" layoutY="195.0" text="Ingresar apellido:">
+      <Label layoutX="54.0" layoutY="273.0" text="Ingresar apellido:">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="104.0" text="Ingresa DNI: ">
+      <Label layoutX="55.0" layoutY="182.0" text="Ingresa DNI: ">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Separator layoutY="89.0" prefHeight="2.0" prefWidth="498.0" />
-      <Button fx:id="btnVerificarDocente" layoutX="416.0" layoutY="100.0" mnemonicParsing="false" onAction="#verificarDNI" prefHeight="28.0" prefWidth="70.0" text="Verificar" />
+      <Separator layoutX="2.0" layoutY="113.0" prefHeight="3.0" prefWidth="473.0" />
+      <Button fx:id="btnVerificarDocente" layoutX="358.0" layoutY="102.0" mnemonicParsing="false" onAction="#verificarDNI" prefHeight="27.0" prefWidth="70.0" text="Verificar" />
+      <TextField fx:id="txtMensaje" layoutX="50.0" layoutY="309.0" prefHeight="25.0" prefWidth="395.0" />
+      <TextField fx:id="txtVerificarDni" layoutX="190.0" layoutY="127.0" prefHeight="25.0" prefWidth="112.0" />
+      <Label layoutX="55.0" layoutY="131.0" text="DNI:" />
+      <Separator layoutX="-13.0" layoutY="165.0" prefHeight="3.0" prefWidth="488.0" />
+      <Label layoutX="113.0" layoutY="21.0" prefHeight="39.0" prefWidth="295.0" text="CENTRO DE IDIOMAS CCCP">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

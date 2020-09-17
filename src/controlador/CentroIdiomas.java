@@ -21,7 +21,7 @@ public class CentroIdiomas extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/RegistroDocente.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/Registro.fxml"));
         //Parent roo = FXMLLoader.load(getClass().getResource("FXMLDocente.fxml"));
         Scene scene = new Scene(root);
         

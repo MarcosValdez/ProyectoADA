@@ -5,19 +5,26 @@
  */
 package controlador;
 
+import archivos.ArchivoDocente;
 import java.io.IOException;
 import java.net.URL;
 
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import modelo.ArbolDocente;
 import modelo.Docente;
 
@@ -36,6 +43,12 @@ public class RegistroDocenteController implements Initializable {
 
     @FXML
     private TextField txtDniDocente;
+    
+    @FXML
+    private TextField txtVerificarDni;
+
+    @FXML
+    private TextField txtMensaje;
 
     @FXML
     private TextArea txtArea;
@@ -57,45 +70,88 @@ public class RegistroDocenteController implements Initializable {
 
     ArbolDocente docente = new ArbolDocente();
 
+    //ArchivoDocente archivo = new ArchivoDocente();
+
     @FXML
     public void adicionarDocente(ActionEvent event) {
         int dni = Integer.parseInt(txtDniDocente.getText());
         String nombre = txtNombreDocente.getText();
         String apellido = txtApellidoDocente.getText();
-        
-        //Docente d = new Docente(dni,nombre,apellido);
-        
-       txtArea.setText(docente.insertar(dni,nombre,apellido));
 
+        txtMensaje.setText(docente.insertar(dni, nombre, apellido));
+        txtDniDocente.setText("");
+        txtNombreDocente.setText("");
+        txtApellidoDocente.setText("");
+        txtArea.setText(docente.mostrar());
     }
 
     @FXML
     public void verificarDNI(ActionEvent event) {
         int dni = Integer.parseInt(txtDniDocente.getText());
 
-//        Docente d = docente.busquedaDocente(dni);
+        txtMensaje.setText(docente.busqueda(dni));
 
-        txtArea.setText(docente.busqueda(dni));
+        Docente d = docente.busquedaDocente(dni);
+        if (d != null) {
+            txtNombreDocente.setText(d.nombreDocente);
+            txtApellidoDocente.setText(d.apellidoDocente);
+        } else {
+            txtNombreDocente.setText("");
+            txtApellidoDocente.setText("");
+        }
+        
     }
 
     @FXML
     public void guardarDocente(ActionEvent event) throws IOException {
-
+        txtMensaje.setText(docente.pasarArbolFilaDocente());
     }
 
     @FXML
     void eliminarDocente(ActionEvent event) {
-        Docente d=new Docente();
+        int dni = Integer.parseInt(txtDniDocente.getText());
+        txtMensaje.setText(docente.eliminarDocente(dni));
         txtArea.setText(docente.mostrar());
+        txtDniDocente.setText("");
+        txtNombreDocente.setText("");
+        txtApellidoDocente.setText("");
     }
 
     @FXML
     void modifcarDocente(ActionEvent event) throws InterruptedException {
+        String dni1=txtVerificarDni.getText();
+        int dni2 = Integer.parseInt(txtDniDocente.getText());
+        String nombre = txtNombreDocente.getText();
+        String apellido = txtApellidoDocente.getText();
 
+        txtMensaje.setText(docente.modificarDocente(dni2, nombre, apellido));
+        txtArea.setText(docente.mostrar());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        try {
+            //archivo.crear();
+            docente.pasarFilaArbolDocente();
+        } catch (IOException ex) {
+            Logger.getLogger(RegistroDocenteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtArea.setText(docente.mostrar());
+    }
+    
+    public void closeWindows() throws IOException{
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/vista/Registro.fxml"));
+        Parent root=loader.load();
+     
+        Scene scene=new Scene(root);
+        Stage stage=new Stage();
+        
+        stage.setScene(scene);
+        stage.show();
+       
+        //Stage mystage=(Stage)this.btnGuardar.getScene().getWindow();
+        
+        //mystage.close();
     }
 }

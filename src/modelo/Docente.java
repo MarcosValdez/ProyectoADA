@@ -33,7 +33,7 @@ public class Docente {
 
     @Override
     public String toString() {
-        return dniDocente + "\t" + nombreDocente + "\t" + apellidoDocente;
+        return dniDocente  +" "+ nombreDocente + " " + apellidoDocente;
     }
     
 

@@ -18,7 +18,7 @@ import java.io.PrintWriter;
  *
  * @author marco
  */
-public class ArchivoDocente {
+public class ArchivoAlumno {
     File file;
     
     //buffer de salida
@@ -32,8 +32,8 @@ public class ArchivoDocente {
     
     String linea;
     
-    public ArchivoDocente(){
-        file=new File("Docentes.txt");
+    public ArchivoAlumno(){
+        file=new File("Alumnos.txt");
     }
     
     public void crear() throws IOException{
@@ -56,9 +56,11 @@ public class ArchivoDocente {
     }
     
     //PONER(F)
-    public void poner(String cadena) throws IOException{
-        String mensaje=cadena;
-        salArch.print(mensaje);
+    public void poner(String d,String n, String a, int edad) throws IOException{
+        
+        String entrada=d+" "+n+" "+a+" "+String.valueOf(edad);
+        
+        salArch.println(entrada);
     }
     
     public String leer() throws IOException{
