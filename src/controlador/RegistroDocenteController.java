@@ -79,7 +79,7 @@ public class RegistroDocenteController implements Initializable {
         String nombre = txtNombreDocente.getText();
         String apellido = txtApellidoDocente.getText();
 
-        txtMensaje.setText(docente.insertar(dni1,dni2, nombre, apellido));
+        txtMensaje.setText(docente.insertarDocente(dni1,dni2, nombre, apellido));
         txtDniDocente.setText("");
         txtNombreDocente.setText("");
         txtApellidoDocente.setText("");

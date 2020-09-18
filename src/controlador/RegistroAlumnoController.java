@@ -153,8 +153,8 @@ public class RegistroAlumnoController implements Initializable {
         stage.setScene(scene);
         stage.show();
        
-        Stage mystage=(Stage)this.btnGuardar.getScene().getWindow();
+        //Stage mystage=(Stage)this.btnGuardar.getScene().getWindow();
         
-        mystage.close();
+        //mystage.close();
     }
 }

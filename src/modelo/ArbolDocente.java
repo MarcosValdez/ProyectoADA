@@ -22,8 +22,8 @@ public class ArbolDocente {
 
     public ArbolDocente() {
         this.raiz = null;
-        this.posicionActual=null;
-        this.posicionPadre=null;
+        this.posicionActual = null;
+        this.posicionPadre = null;
     }
 
     public String busqueda(int dni) {
@@ -81,21 +81,21 @@ public class ArbolDocente {
         return posicionActual;
     }
 
-    public String insertar(int dni1,int dni2, String nombre, String apellido) {
+    public String insertarDocente(int dni1, int dni2, String nombre, String apellido) {
 
         if (busquedaDocente(dni1) == null) {
-            insertarDocente(dni2, nombre, apellido);
+            insertar(dni2, nombre, apellido);
             return "se adiciono docente " + dni2;
         } else {
             return "ya existe" + dni2;
         }
     }
 
-    public void insertarDocente(int dni, String nombre, String apellido) {
+    public void insertar(int dni, String nombre, String apellido) {
         Docente D = new Docente(dni, nombre, apellido);
         if (posicionPadre == null) {
             raiz = D;
-            
+
         } else {
             if (posicionPadre.dniDocente < D.dniDocente) {
                 posicionPadre.hijoDerecho = D;
@@ -106,82 +106,82 @@ public class ArbolDocente {
         }
     }
 
-    public String eliminarDocente(int dni){
-        
-        if(busquedaDocente(dni)==null){
-            return dni+" no existe";
-        }else{
-            if(posicionActual.hijoIzquierdo!=null && posicionActual.hijoDerecho!=null){
-                eliminarCasoB(posicionActual,posicionPadre);
-            }else{
-                eliminarCasoA(posicionActual,posicionPadre);
+    public String eliminarDocente(int dni) {
+
+        if (busquedaDocente(dni) == null) {
+            return dni + " no existe";
+        } else {
+            if (posicionActual.hijoIzquierdo != null && posicionActual.hijoDerecho != null) {
+                eliminarCasoB(posicionActual, posicionPadre);
+            } else {
+                eliminarCasoA(posicionActual, posicionPadre);
             }
             return "Se elimni con exito";
         }
     }
-    
-    public void eliminarCasoB(Docente posicionActual,Docente posicionPadre){
+
+    public void eliminarCasoB(Docente posicionActual, Docente posicionPadre) {
         Docente sucesor, padreSucesor;
-        Docente rais=posicionActual.hijoDerecho;
-        Docente T=posicionActual;
-        while(rais.hijoIzquierdo!=null){
-            T=rais;
-            rais=rais.hijoIzquierdo;
+        Docente r = posicionActual.hijoDerecho;
+        Docente T = posicionActual;
+        while (r.hijoIzquierdo != null) {
+            T = r;
+            r = r.hijoIzquierdo;
         }
-        sucesor=rais;
-        padreSucesor=T;
-        
-        eliminarCasoA(sucesor,padreSucesor);
-        
-        if(posicionPadre!=null){
-            if(posicionActual==posicionPadre.hijoIzquierdo){
-                posicionPadre.hijoIzquierdo=sucesor;
-            }else{
-                posicionPadre.hijoDerecho=sucesor;
+        sucesor = r;
+        padreSucesor = T;
+
+        eliminarCasoA(sucesor, padreSucesor);
+
+        if (posicionPadre != null) {
+            if (posicionActual == posicionPadre.hijoIzquierdo) {
+                posicionPadre.hijoIzquierdo = sucesor;
+            } else {
+                posicionPadre.hijoDerecho = sucesor;
             }
-        }else{
-            raiz=sucesor;
+        } else {
+            raiz = sucesor;
         }
-        sucesor.hijoIzquierdo=posicionActual.hijoIzquierdo;
-        sucesor.hijoDerecho=posicionActual.hijoDerecho;
+        sucesor.hijoIzquierdo = posicionActual.hijoIzquierdo;
+        sucesor.hijoDerecho = posicionActual.hijoDerecho;
     }
-    
-    public void eliminarCasoA(Docente posicionActual,Docente posicionPadre){
+
+    public void eliminarCasoA(Docente posicionActual, Docente posicionPadre) {
         Docente hijo;
-        if(posicionActual.hijoIzquierdo==null && posicionActual.hijoDerecho==null){
-            hijo=null;
-        }else{
-            if(posicionActual.hijoIzquierdo!=null){
-                hijo=posicionActual.hijoIzquierdo;
-            }else{
-                hijo=posicionActual.hijoDerecho;
+        if (posicionActual.hijoIzquierdo == null && posicionActual.hijoDerecho == null) {
+            hijo = null;
+        } else {
+            if (posicionActual.hijoIzquierdo != null) {
+                hijo = posicionActual.hijoIzquierdo;
+            } else {
+                hijo = posicionActual.hijoDerecho;
             }
         }
-        if(posicionPadre!=null){
-            if(posicionActual==posicionPadre.hijoIzquierdo){
-                posicionPadre.hijoIzquierdo=hijo;
-            }else{
-                posicionPadre.hijoDerecho=hijo;
+        if (posicionPadre != null) {
+            if (posicionActual == posicionPadre.hijoIzquierdo) {
+                posicionPadre.hijoIzquierdo = hijo;
+            } else {
+                posicionPadre.hijoDerecho = hijo;
             }
-        }else{
-            raiz=hijo;
+        } else {
+            raiz = hijo;
         }
-        
+
     }
-    
-    public String modificarDocente(int dni,String nombre,String apellido){
-        
-        Docente m=busquedaDocente(dni);
-        if(m!=null){
-            m.dniDocente=dni;
-            m.nombreDocente=nombre;
-            m.apellidoDocente=apellido;
+
+    public String modificarDocente(int dni, String nombre, String apellido) {
+
+        Docente m = busquedaDocente(dni);
+        if (m != null) {
+            m.dniDocente = dni;
+            m.nombreDocente = nombre;
+            m.apellidoDocente = apellido;
             return "Se modifico con exito";
-        }else{
+        } else {
             return "no existe el docente";
         }
     }
-    
+
     public String mostrar() {
         String cadena = "DNI" + "\t" + "NOMBRE" + "\t" + "APELLIDO";
         return cadena + "\n" + inOrden(raiz);
@@ -195,9 +195,9 @@ public class ArbolDocente {
     }
 
     public String pasarArbolFilaDocente() throws IOException {
-        
+
         Docente n = raiz;
-        
+
         if (raiz == null) {
             return "Arbol Vacio";
         } else {
@@ -215,22 +215,16 @@ public class ArbolDocente {
     public void pasarFilaArbolDocente() throws FileNotFoundException, IOException {
         archivo.crear();
         archivo.abrirEntrada();
-        //posicionPadre=null;
-//        posicionActual=null;
-//        posicionPadre=null;
+
         String cadena, dni, nombre, apellido;
-        
-        while ( (cadena=archivo.leer())!= null) {
+
+        while ((cadena = archivo.leer()) != null) {
             StringTokenizer token = new StringTokenizer(cadena);
-           //while (token.hasMoreTokens()) {
-                dni = token.nextToken();
-                nombre = token.nextToken();
-                apellido = token.nextToken();
-                busquedaDocente(Integer.parseInt(dni));
-                insertarDocente(Integer.parseInt(dni), nombre, apellido);
-            //}
-            System.out.println(cadena);
-            
+
+            dni = token.nextToken();
+            nombre = token.nextToken();
+            apellido = token.nextToken();
+            insertarDocente(Integer.parseInt(dni),Integer.parseInt(dni), nombre, apellido);
         }
         archivo.cerrarEntrada();
     }

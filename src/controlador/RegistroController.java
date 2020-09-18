@@ -28,72 +28,123 @@ public class RegistroController implements Initializable {
 
     @FXML
     private Button btnRegistroAlumno;
-    
+
     @FXML
     private Button btnRegistroDocente;
-    
+
     @FXML
     private Button btnRegistroClase;
     
     @FXML
-    public void registroAlumno(ActionEvent event) throws IOException{
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/vista/RegistroAlumno.fxml"));
-        Parent root=loader.load();
-        
-        RegistroAlumnoController alumno=loader.getController();
-        
-        Scene scene=new Scene(root);
-        Stage stage=new Stage();
-        
+    private Button btnCerrar;
+
+    @FXML
+    public void registroAlumno(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/RegistroAlumno.fxml"));
+        Parent root = loader.load();
+
+        RegistroAlumnoController alumno = loader.getController();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+
         stage.setScene(scene);
         stage.show();
-        
-        stage.setOnCloseRequest(c->{
+
+        stage.setOnCloseRequest(c -> {
             try {
                 alumno.closeWindows();
             } catch (IOException ex) {
                 Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        Stage mystage=(Stage)this.btnRegistroAlumno.getScene().getWindow();
-        
+        Stage mystage = (Stage) this.btnRegistroAlumno.getScene().getWindow();
+
         mystage.close();
     }
-    
+
     @FXML
-    public void registroDocente(ActionEvent event) throws IOException{
-         FXMLLoader loader=new FXMLLoader(getClass().getResource("/vista/RegistroDocente.fxml"));
-        Parent root=loader.load();
-        
-        RegistroDocenteController docente=loader.getController();
-        
-        Scene scene=new Scene(root);
-        Stage stage=new Stage();
-        
+    public void registroDocente(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/RegistroDocente.fxml"));
+        Parent root = loader.load();
+
+        RegistroDocenteController docente = loader.getController();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+
         stage.setScene(scene);
         stage.show();
-        
-        stage.setOnCloseRequest(c->{
+
+        stage.setOnCloseRequest(c -> {
             try {
                 docente.closeWindows();
             } catch (IOException ex) {
                 Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        Stage mystage=(Stage)this.btnRegistroDocente.getScene().getWindow();
-        
+        Stage mystage = (Stage) this.btnRegistroDocente.getScene().getWindow();
+
+        mystage.close();
+    }
+
+    @FXML
+    public void registroClase(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/RegistroClase.fxml"));
+        Parent root = loader.load();
+
+        RegistroClaseController docente = loader.getController();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+
+        stage.setScene(scene);
+        stage.show();
+
+        stage.setOnCloseRequest(c -> {
+            try {
+                docente.closeWindows();
+            } catch (IOException ex) {
+                Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        Stage mystage = (Stage) this.btnRegistroClase.getScene().getWindow();
+
         mystage.close();
     }
     
     @FXML
-    public void registroClase(ActionEvent event){
+    void cerrar(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/VentanaPrincipal.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
         
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        
+        Stage mystage = (Stage) this.btnCerrar.getScene().getWindow();
+        
+        mystage.close();
     }
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
     
+    public void closeWindows() throws IOException{
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/vista/VentanaPrincipal.fxml"));
+        Parent root=loader.load();
+        
+        //RegistroController clase=loader.getController();
+        
+        Scene scene=new Scene(root);
+        Stage stage=new Stage();
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

@@ -19,18 +19,17 @@ import modelo.ArbolDocente;
  */
 public class CentroIdiomas extends Application {
     
-    //ArbolDocente a=new ArbolDocente();
+    
     
     @Override
     public void start(Stage stage) throws Exception {
-       // a.pasarFilaArbolDocente();
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/Registro.fxml"));
-        //Parent roo = FXMLLoader.load(getClass().getResource("FXMLDocente.fxml"));
+       
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/VentanaPrincipal.fxml"));
+        
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
-        
     }
 
     /**
